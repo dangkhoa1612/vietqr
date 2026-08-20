@@ -4,7 +4,7 @@
 
     "variations" : [
         {
-            "description" : "VietQR Generator",
+            "description" : "Tạo mã QR thanh toán",
             "url"         : "index.html",
 
             "icons"           : ["resources/img/icon.png", "resources/img/icon@2x.png"],
@@ -18,11 +18,32 @@
             "initDataType"    : "text",
             "initData"        : "",
 
-			"isUpdateOleOnResize" : false,
+            "isUpdateOleOnResize" : false,
 
-			"buttons"         : [],
-			
-			"initOnSelectionChanged" : true
+            "buttons"         : [],
+
+            "initOnSelectionChanged" : true
+        },
+        {
+            "description" : "Cài đặt",
+            "url"         : "settings.html",
+
+            "icons"           : ["resources/img/icon.png", "resources/img/icon@2x.png"],
+            "isViewer"        : false,
+            "EditorsSupport"  : ["cell"],
+
+            "isVisual"        : true,
+            "isModal"         : true,
+            "isInsideMode"    : false,
+
+            "initDataType"    : "text",
+            "initData"        : "",
+
+            "isUpdateOleOnResize" : false,
+
+            "size"            : [640, 430],
+
+            "buttons"         : []
         }
     ]
 }

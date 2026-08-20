@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VietQR Settings</title>
+    <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+            font-size: 13px;
+            color: #333;
+            box-sizing: border-box;
+        }
+        #settings-form {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            padding: 16px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .field {
+            margin-bottom: 12px;
+        }
+        .field label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+            color: #444;
+        }
+        .field input[type="text"],
+        .field select {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #cbd0d6;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: inherit;
+            color: #222;
+            background: #fff;
+        }
+        .field input[type="text"]:focus,
+        .field select:focus {
+            outline: none;
+            border-color: #7d9bff;
+        }
+        .lookup-link {
+            display: inline-block;
+            margin-top: 4px;
+            padding: 7px 14px;
+            background: #f1f3f5;
+            border: 1px solid #cbd0d6;
+            border-radius: 4px;
+            color: #2b6cff;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .lookup-link:hover {
+            background: #e6e9ec;
+        }
+        /* Custom dropdown — thay cho <select> gốc vì native select popup
+           không mở được trong webview nhúng của trình chỉnh sửa desktop */
+        .custom-select {
+            position: relative;
+        }
+        .custom-select-trigger {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #cbd0d6;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #222;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            user-select: none;
+        }
+        .custom-select-trigger .trigger-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .custom-select-trigger .arrow {
+            flex: none;
+            color: #888;
+            font-size: 11px;
+        }
+        .custom-select-trigger:focus,
+        .custom-select-trigger.open {
+            outline: none;
+            border-color: #7d9bff;
+        }
+        .custom-select-options {
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: #fff;
+            border: 1px solid #cbd0d6;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .custom-select-options.hidden {
+            display: none;
+        }
+        .custom-option {
+            padding: 8px 10px;
+            font-size: 13px;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+        .custom-option:hover,
+        .custom-option.active {
+            background: #f0f4ff;
+        }
+        .custom-option + .custom-option {
+            border-top: 1px solid #f1f3f5;
+        }
+        .actions {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #e6e9ec;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        .btn {
+            padding: 7px 18px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+            border: 1px solid #cbd0d6;
+            background: #fff;
+            color: #333;
+        }
+        .btn:hover {
+            background: #f1f3f5;
+        }
+        .btn-primary {
+            background: #2b6cff;
+            border-color: #2b6cff;
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background: #1f56d1;
+        }
+    </style>
+    <script type="text/javascript" src="scripts/settings.js"></script>
+</head>
+<body>
+    <form id="settings-form" onsubmit="return false;">
+        <div class="field">
+            <label for="field-bank">Ngân Hàng:</label>
+            <input type="text" id="field-bank" placeholder="Ví dụ: ICB, VCB, TCB...">
+        </div>
+
+        <div class="field">
+            <label for="field-account">Số tài khoản:</label>
+            <input type="text" id="field-account" placeholder="Ví dụ: 115003018063">
+        </div>
+
+        <div class="field">
+            <label id="field-template-label">Kiểu QR:</label>
+            <div class="custom-select" id="template-select">
+                <div class="custom-select-trigger" id="template-trigger" tabindex="0" role="button" aria-haspopup="listbox">
+                    <span class="trigger-text" id="template-trigger-text">compact</span>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="custom-select-options hidden" id="template-options" role="listbox">
+                    <div class="custom-option" data-value="compact2">compact2 — Bao gồm: Mã QR, các logo, thông tin chuyển khoản</div>
+                    <div class="custom-option" data-value="compact">compact — QR kèm logo VietQR, Napas, ngân hàng</div>
+                    <div class="custom-option" data-value="qr_only">qr_only — Trả về ảnh QR đơn giản, chỉ bao gồm QR</div>
+                    <div class="custom-option" data-value="print">print — Bao gồm: Mã QR, các logo và đầy đủ thông tin chuyển khoản</div>
+                    <div class="custom-option" data-value="loax">loax — Bao gồm: Mã QR, các logo, thông tin chuyển khoản, cho sản phẩm Loa thanh toán, Loa thông báo chuyển khoản</div>
+                </div>
+            </div>
+            <input type="hidden" id="field-template" value="compact">
+        </div>
+
+        <div class="field">
+            <label for="field-name">Tên tài khoản:</label>
+            <input type="text" id="field-name" placeholder="Ví dụ: CONG TY TNHH 5EX">
+        </div>
+
+        <div class="field">
+            <label for="field-desc">Nội dung chuyển khoản:</label>
+            <input type="text" id="field-desc" placeholder="Ví dụ: Thanh toan tien hang">
+        </div>
+
+        <div class="field">
+            <a class="lookup-link" href="https://vietqr.io/danh-sach-api/link-tao-ma-nhanh/" target="_blank" rel="noopener noreferrer">Tra cứu ngân hàng</a>
+        </div>
+
+        <div class="actions">
+            <button type="button" class="btn" id="btn-cancel">Hủy</button>
+            <button type="button" class="btn btn-primary" id="btn-save">Lưu</button>
+        </div>
+    </form>
+</body>
+</html>
