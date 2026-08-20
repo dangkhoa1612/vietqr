@@ -52,20 +52,6 @@
             outline: none;
             border-color: #7d9bff;
         }
-        .lookup-link {
-            display: inline-block;
-            margin-top: 4px;
-            padding: 7px 14px;
-            background: #f1f3f5;
-            border: 1px solid #cbd0d6;
-            border-radius: 4px;
-            color: #2b6cff;
-            text-decoration: none;
-            font-size: 13px;
-        }
-        .lookup-link:hover {
-            background: #e6e9ec;
-        }
         /* Custom dropdown — thay cho <select> gốc vì native select popup
            không mở được trong webview nhúng của trình chỉnh sửa desktop */
         .custom-select {
@@ -131,6 +117,33 @@
         .custom-option + .custom-option {
             border-top: 1px solid #f1f3f5;
         }
+        .custom-option.empty-state {
+            color: #888;
+            cursor: default;
+        }
+        .custom-option.empty-state:hover {
+            background: #fff;
+        }
+        .select-search-box {
+            position: sticky;
+            top: 0;
+            padding: 6px;
+            background: #fff;
+            border-bottom: 1px solid #e6e9ec;
+        }
+        .select-search-box input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #cbd0d6;
+            border-radius: 4px;
+            font-size: 13px;
+            font-family: inherit;
+        }
+        .select-search-box input:focus {
+            outline: none;
+            border-color: #7d9bff;
+        }
         .actions {
             margin-top: auto;
             padding-top: 12px;
@@ -166,8 +179,22 @@
 <body>
     <form id="settings-form" onsubmit="return false;">
         <div class="field">
-            <label for="field-bank">Ngân Hàng:</label>
-            <input type="text" id="field-bank" placeholder="Ví dụ: ICB, VCB, TCB...">
+            <label>Ngân Hàng:</label>
+            <div class="custom-select" id="bank-select">
+                <div class="custom-select-trigger" id="bank-trigger" tabindex="0" role="button" aria-haspopup="listbox">
+                    <span class="trigger-text" id="bank-trigger-text">Đang tải danh sách ngân hàng…</span>
+                    <span class="arrow">▾</span>
+                </div>
+                <div class="custom-select-options hidden" id="bank-options" role="listbox">
+                    <div class="select-search-box">
+                        <input type="text" id="bank-search" placeholder="Gõ để tìm ngân hàng...">
+                    </div>
+                    <div id="bank-options-list">
+                        <div class="custom-option empty-state">Đang tải danh sách ngân hàng…</div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="field-bank" value="">
         </div>
 
         <div class="field">
@@ -201,10 +228,6 @@
         <div class="field">
             <label for="field-desc">Nội dung chuyển khoản:</label>
             <input type="text" id="field-desc" placeholder="Ví dụ: Thanh toan tien hang">
-        </div>
-
-        <div class="field">
-            <a class="lookup-link" href="https://vietqr.io/danh-sach-api/link-tao-ma-nhanh/" target="_blank" rel="noopener noreferrer">Tra cứu ngân hàng</a>
         </div>
 
         <div class="actions">

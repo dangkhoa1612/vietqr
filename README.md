@@ -19,8 +19,7 @@ Trước khi dùng lần đầu, bạn cần nhập thông tin tài khoản nh�
 
 1. Bấm vào mũi tên nhỏ bên cạnh icon **VietQR Generator**, chọn **"Cài đặt"**.
 2. Một cửa sổ hiện ra với các ô cần điền:
-   - **Ngân Hàng**: nhập mã ngân hàng của bạn (ví dụ `ICB` là VietinBank, `VCB` là Vietcombank...). Nếu chưa biết mã ngân hàng của mình, bấm nút **"Tra cứu ngân hàng"** ngay trong cửa sổ để xem danh sách đầy đủ.
-   - **Số tài khoản**: số tài khoản ngân hàng của bạn.
+   - **Ngân Hàng**: bấm vào ô này, một danh sách ngân hàng sẽ hiện ra để bạn chọn (có ô gõ tìm kiếm ở trên để tìm nhanh theo tên ngân hàng, ví dụ gõ "vietcombank" hoặc "ICB"). Không cần nhớ mã ngân hàng nữa.   - **Số tài khoản**: số tài khoản ngân hàng của bạn.
    - **Kiểu QR**: chọn 1 trong 5 mẫu hiển thị có sẵn, xem bảng mô tả bên dưới để chọn mẫu phù hợp.
    - **Tên tài khoản**: tên chủ tài khoản (nên viết IN HOA không dấu, giống như trên thẻ ngân hàng).
    - **Nội dung chuyển khoản**: nội dung sẽ tự động ghi kèm mỗi khi tạo mã QR (ví dụ: "Thanh toan don hang").
@@ -28,6 +27,8 @@ Trước khi dùng lần đầu, bạn cần nhập thông tin tài khoản nh�
 4. Nếu muốn đổi thông tin sau này, quay lại đúng bước trên, sửa rồi bấm **Lưu** lại là được. Bấm **Hủy** nếu không muốn lưu thay đổi.
 
 > Lưu ý: thông tin này được ghi nhớ riêng trên máy/trình duyệt bạn đang dùng. Nếu bạn mở file này trên một máy khác, bạn cần khai báo lại thông tin một lần ở máy đó.
+>
+> Danh sách ngân hàng cần có kết nối mạng để tải về khi mở cửa sổ Cài đặt. Nếu máy đang mất mạng, danh sách sẽ chỉ hiện một số ngân hàng phổ biến để bạn vẫn chọn được.
 
 ## Bước 2 — Tạo mã QR thanh toán
 
