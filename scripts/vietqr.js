@@ -4,11 +4,11 @@
     var STORAGE_KEY = "vietqr_plugin_config";
 
     var DEFAULT_CONFIG = {
-        BANK_ID       : "ICB",
-        ACCOUNT_NO    : "115003018063",
+        BANK_ID       : "VPB",
+        ACCOUNT_NO    : "166095611",
         TEMPLATE      : "compact",
-        ACCOUNT_NAME  : "CONG TY TNHH 5EX",
-        DESCRIPTION   : "Thanh toan tien hang 5Ex"
+        ACCOUNT_NAME  : "TRUONG DANG KHOA",
+        DESCRIPTION   : "Donate"
     };
 
     // Kích thước gốc (px) của từng mẫu QR theo tài liệu VietQR,

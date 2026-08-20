@@ -4,11 +4,11 @@
     var BANKS_API_URL = "https://api.vietqr.io/v2/banks";
 
     var DEFAULT_CONFIG = {
-        BANK_ID       : "ICB",
-        ACCOUNT_NO    : "115003018063",
+        BANK_ID       : "VPB",
+        ACCOUNT_NO    : "166095611",
         TEMPLATE      : "compact",
-        ACCOUNT_NAME  : "CONG TY TNHH 5EX",
-        DESCRIPTION   : "Thanh toan tien hang 5Ex"
+        ACCOUNT_NAME  : "TRUONG DANG KHOA",
+        DESCRIPTION   : "Donate"
     };
 
     var VALID_TEMPLATES = ["compact2", "compact", "qr_only", "print", "loax"];
