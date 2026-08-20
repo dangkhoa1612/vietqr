@@ -14,25 +14,30 @@
         var valid = (Number.isInteger(value) && value > 0);
 
         if (!valid) {
-            Asc.plugin.executeMethod("ShowError",["Invalid data.", 0]);
+            Asc.plugin.executeMethod(
+                "ShowError",
+                ["Giá trị phải là số nguyên lớn hơn 0.", 0]
+            );
         } else {
 
             // Tạo URL QR từ VietQR
-            let baseUrl = "https://vietqr.app/img?";
-            let params =
-                "acc=166095611" + //Số tài khoản ngân hàng (bắt buộc).
-                "&bank=Vpbank" + //Code ngân hàng hoặc Short_name của ngân hàng (bắt buộc). 
-                "&amount=" + encodeURIComponent(amount) + //Số tiền cần chuyển.
-                "&des=" + encodeURIComponent("Donate") + //Nội dung chuyển khoản.
-                "&template=compact"; //style: compact, qronly hoặc standee 
-
-            let url = baseUrl + params;
+            let baseUrl = "https://img.vietqr.io/image/";
+            let BANK_ID = "ICB";
+            let ACCOUNT_NO = "166095611";
+            let TEMPLATE = "compact";
+            let ACCOUNT_NAME = "TDK";
+            let DESCRIPTION = "DONATE";
+            
+            let url = baseUrl + BANK_ID + "-" + ACCOUNT_NO + "-" + TEMPLATE + ".png";
+            url += "?amount=" + encodeURIComponent(value);
+            url += "&addInfo=" + encodeURIComponent(DESCRIPTION);
+            url += "&accountName=" + encodeURIComponent(ACCOUNT_NAME);
 
             // Đóng gói dữ liệu ảnh để chèn vào selection
             let imageData = {
                 "src": url,
                 "width": 200,   // chỉnh kích thước ảnh QR
-                "height": 200   // chỉnh kích thước ảnh QR
+                "height": 200
             };
             // Chèn ảnh QR vào ô đang chọn
             window.Asc.plugin.executeMethod("PutImageDataToSelection", [imageData]);
@@ -40,4 +45,3 @@
         window.Asc.plugin.executeCommand("close", "");
     };
 })(window, undefined);
-
