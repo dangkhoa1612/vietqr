@@ -52,3 +52,4 @@ Hình ảnh mã QR được tạo ra sẽ luôn đúng tỉ lệ với mẫu b�
 ## Cần hỗ trợ thêm?
 
 Nếu gặp lỗi khi cài đặt hoặc sử dụng, hãy chụp lại màn hình thông báo lỗi (nếu có) và gửi cho người phụ trách kỹ thuật để được hỗ trợ nhanh hơn.
+Tham khảo: https://vietqr.io/danh-sach-api/link-tao-ma-nhanh/
