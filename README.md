@@ -1,6 +1,6 @@
 # VietQR Generator
 
-Plugin giúp tạo mã QR thanh toán VietQR ngay trong bảng tính, chỉ với vài thao tác — không cần biết lập trình.
+Plugin giúp tạo mã QR thanh toán VietQR ngay trong bảng tính, chỉ với vài thao tác.
 
 ## Plugin làm được gì?
 
